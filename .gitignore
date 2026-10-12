@@ -8,3 +8,15 @@ __pycache__/
 Thumbs.db
 desktop.ini
 WELFAKE dataset_FAKE NEWS DETECTION/WELFake_Dataset.csv
+
+# Third-party papers kept locally only (see References in README)
+Papers/
+
+# Generated artifacts
+*.pkl
+*.npz
+y_train.csv
+y_test.csv
+welfake_cleaned.csv
+model_comparison_*.csv
+distilbert_fakenews/

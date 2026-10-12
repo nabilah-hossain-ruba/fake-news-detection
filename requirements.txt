@@ -1,0 +1,16 @@
+numpy
+pandas
+scipy
+scikit-learn
+xgboost
+nltk
+wordcloud
+matplotlib
+seaborn
+tensorflow>=2.15
+torch
+transformers
+datasets
+accelerate
+kagglehub
+jupyter
