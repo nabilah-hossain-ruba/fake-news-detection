@@ -8,7 +8,9 @@ import pandas as pd
 from .data import RESULTS_DIR
 
 PRED_DIR = RESULTS_DIR / 'preds'
-RUNS_DIR = RESULTS_DIR  # one runs_<family>.jsonl per model family, so Colab and local logs merge cleanly
+# One runs_<family>_<setting>.jsonl per model family and setting, so logs from separate
+# machines (Kaggle, Colab, local) can be copied into one results/ folder without clashing
+RUNS_DIR = RESULTS_DIR
 
 
 def pred_path(split_name, train_cond, test_cond, model, seed):
@@ -28,7 +30,8 @@ def save_predictions(split_name, train_cond, test_cond, model, seed, row_ids, y_
 
 def log_run(**record):
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
-    with open(RUNS_DIR / f"runs_{record['family']}.jsonl", 'a', encoding='utf-8') as f:
+    setting = 'in-domain' if record['split'] == 'in-domain' else 'cross-source'
+    with open(RUNS_DIR / f"runs_{record['family']}_{setting}.jsonl", 'a', encoding='utf-8') as f:
         f.write(json.dumps(record, default=str) + '\n')
 
 

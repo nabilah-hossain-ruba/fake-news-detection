@@ -23,14 +23,15 @@ MODELS = {
                     {'alpha': [0.01, 0.03, 0.1, 0.3, 1.0]}),
     'Logistic Regression': (lambda seed, **p: LogisticRegression(max_iter=2000, class_weight='balanced',
                                                                  random_state=seed, **p),
-                            {'C': [0.3, 1, 3, 10, 30]}),
+                            {'C': [1, 3, 10, 30, 100, 300]}),
     'Linear SVM': (lambda seed, **p: LinearSVC(class_weight='balanced', random_state=seed, **p),
                    {'C': [0.03, 0.1, 0.3, 1, 3]}),
     'Decision Tree': (lambda seed, **p: DecisionTreeClassifier(random_state=seed, **p),
                       {'max_depth': [30, 60], 'min_samples_leaf': [1, 5]}),
-    'Random Forest': (lambda seed, **p: RandomForestClassifier(n_estimators=300, n_jobs=-1,
+    # min_samples_leaf >= 2 keeps 200 fully grown trees within a few hundred MB
+    'Random Forest': (lambda seed, **p: RandomForestClassifier(n_estimators=200, n_jobs=-1,
                                                                random_state=seed, **p),
-                      {'max_features': ['sqrt', 0.02], 'min_samples_leaf': [1, 2]}),
+                      {'max_features': ['sqrt', 0.02], 'min_samples_leaf': [2, 5]}),
     # n_estimators is chosen by early stopping on the validation split
     'XGBoost': (lambda seed, **p: XGBClassifier(n_estimators=1000, learning_rate=0.1, subsample=0.9,
                                                 colsample_bytree=0.5, tree_method='hist',
@@ -69,6 +70,7 @@ def fit_tuned(name, X_tr, y_tr, X_val, y_val, seed, params=None):
         val_f1 = f1_score(y_val, model.predict(X_val))
         if best is None or val_f1 > best[2]:
             best = (model, p, val_f1, seconds)
+        del model  # only the best fitted model is kept alive
     model, p, val_f1, seconds = best
     if name == 'XGBoost':
         p = {**p, 'best_iteration': int(model.best_iteration)}

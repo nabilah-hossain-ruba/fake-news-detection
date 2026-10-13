@@ -11,6 +11,7 @@ Finished runs are skipped, so the script can be stopped and restarted.
   python scripts/run_classical.py --setting cross-source --seeds 0
 """
 import argparse
+import gc
 import sys
 from pathlib import Path
 
@@ -44,6 +45,8 @@ def main():
     df, stats = load_corpus()
     print('Corpus:', stats, flush=True)
     views = {c: text_view(df, c, 'classical') for c in ['original', 'stripped']}
+    df = df[['row_id', 'label', 'source']].copy()  # free the raw text; only the cleaned views are needed
+    gc.collect()
     y, row_ids = df['label'].to_numpy(), df['row_id'].to_numpy()
     reuse = tuned_params()
 

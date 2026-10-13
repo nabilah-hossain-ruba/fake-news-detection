@@ -57,7 +57,7 @@ deliberately conservative, so stripped-text accuracy is an *upper bound* on what
 ```bash
 pip install -r requirements.txt
 python scripts/tag_sources.py                 # optional: rebuilds data/welfake_sources.csv
-python scripts/run_classical.py --setting in-domain --seeds 0 1 2 3 4
+python scripts/run_classical.py --setting in-domain --seeds 0 1 2 3 4   # or notebooks/run_classical_on_kaggle.ipynb
 python scripts/run_classical.py --setting cross-source --seeds 0
 # GPU: run notebooks/run_on_colab.ipynb, then copy its results/ folder here
 python scripts/analyze.py                     # writes results/RESULTS.md, tables and figures
