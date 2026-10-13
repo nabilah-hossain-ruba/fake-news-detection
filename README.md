@@ -50,7 +50,7 @@ The model independently confirms this: `reuters` is the strongest label-0 featur
   <img src="images/lr_top_terms.png" alt="Top Logistic Regression terms for each class" width="85%">
 </p>
 
-This also shows a **dataset shortcut**: source-specific artefacts like `(Reuters)`, `Featured image`, and `pic twitter` are highly predictive. Part of every model's accuracy therefore comes from *where* an article was published rather than *what* it claims. This is a known limitation of WELFake-style corpora. The **[research extension](RESEARCH.md)** measures it directly: it de-duplicates the corpus, recovers each article's original source, strips the artifacts, and tests every model on sources it never saw.
+This also shows a **dataset shortcut**: source-specific artefacts like `(Reuters)`, `Featured image`, and `pic twitter` are highly predictive. Part of every model's accuracy therefore comes from *where* an article was published rather than *what* it claims. This is a known limitation of WELFake-style corpora. The **[research extension](RESEARCH.md)** (in progress; pipeline built, full runs pending) measures it directly: it de-duplicates the corpus, recovers each article's original source, strips the artifacts, and tests every model on sources it never saw.
 
 ## 🔬 Pipeline
 
