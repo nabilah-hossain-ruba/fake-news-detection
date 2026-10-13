@@ -20,3 +20,7 @@ y_test.csv
 welfake_cleaned.csv
 model_comparison_*.csv
 distilbert_fakenews/
+
+# Saved models
+best_model/
+best_model.keras
