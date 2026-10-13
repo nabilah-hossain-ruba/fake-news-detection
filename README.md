@@ -50,7 +50,7 @@ The model independently confirms this: `reuters` is the strongest label-0 featur
   <img src="images/lr_top_terms.png" alt="Top Logistic Regression terms for each class" width="85%">
 </p>
 
-This also shows a **dataset shortcut**: source-specific artefacts like `(Reuters)`, `Featured image`, and `pic twitter` are highly predictive. Part of every model's accuracy therefore comes from *where* an article was published rather than *what* it claims. This is a known limitation of WELFake-style corpora, and the obvious next step would be to evaluate on sources the models haven't seen.
+This also shows a **dataset shortcut**: source-specific artefacts like `(Reuters)`, `Featured image`, and `pic twitter` are highly predictive. Part of every model's accuracy therefore comes from *where* an article was published rather than *what* it claims. This is a known limitation of WELFake-style corpora. The **[research extension](RESEARCH.md)** measures it directly: it de-duplicates the corpus, recovers each article's original source, strips the artifacts, and tests every model on sources it never saw.
 
 ## 🔬 Pipeline
 
@@ -96,6 +96,12 @@ jupyter notebook fake_news_detection.ipynb
 ```
 ├── fake_news_detection.ipynb   # EDA → preprocessing → 8 models → comparison
 ├── images/                     # Figures exported from the notebook
+├── RESEARCH.md                 # Research extension: shortcut and cross-source analysis
+├── src/fnd/                    # Data, artifact stripping, models and statistics for it
+├── scripts/                    # Experiment runners and analysis
+├── notebooks/run_on_colab.ipynb  # GPU runs (DistilBERT, BiLSTM)
+├── data/welfake_sources.csv    # Recovered source dataset of each WELFake row
+├── results/                    # Run logs, tables, figures and RESULTS.md
 ├── requirements.txt
 └── LICENSE
 ```

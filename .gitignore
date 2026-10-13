@@ -24,3 +24,8 @@ distilbert_fakenews/
 # Saved models
 best_model/
 best_model.keras
+
+# Experiment cache and raw predictions (regenerate with scripts/; tables and logs are committed)
+cache/
+results/preds/
+results/smoke/

@@ -15,3 +15,8 @@ datasets>=2.19
 accelerate>=0.30
 kagglehub>=0.2
 jupyter
+
+# Paper experiments (src/, scripts/)
+datasketch>=1.6
+captum>=0.7
+tabulate>=0.9
